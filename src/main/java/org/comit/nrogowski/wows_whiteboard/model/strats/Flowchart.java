@@ -19,6 +19,22 @@ public abstract class Flowchart<D> {
 	/** Origin node can be null, indicating this flowchart is empty */
 	private Node<D> origin;
 	
+	
+	
+	public Navigator getFlowchartNavigator() {
+		return new Navigator();
+	}
+	
+//	public int getFlowchartSize()
+	
+	
+	/*
+	 * TODO: implement insertion, removal
+	 * TODO: make Navigator threadsafe?? Do something to stop them breaking if concurrent changes, anyways
+	 */
+	
+	
+	
 	/**
 	 * Basically an Iterator, but branching-sensitive
 	 */
