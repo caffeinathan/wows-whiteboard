@@ -1,4 +1,4 @@
-package org.comit.nrogowski.wows_whiteboard.model.maps;
+package org.comit.nrogowski.wows_whiteboard.logical_model.maps;
 
 public class WowsMapsCatalogue {
 	

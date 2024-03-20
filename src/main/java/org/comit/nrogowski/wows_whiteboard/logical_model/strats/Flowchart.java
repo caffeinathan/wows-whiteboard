@@ -1,10 +1,10 @@
-package org.comit.nrogowski.wows_whiteboard.model.strats;
+package org.comit.nrogowski.wows_whiteboard.logical_model.strats;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import org.comit.nrogowski.wows_whiteboard.model.WowsWhiteboardModelException;
+import org.comit.nrogowski.wows_whiteboard.logical_model.WowsWhiteboardModelException;
 
 
 

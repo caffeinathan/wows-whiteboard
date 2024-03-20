@@ -1,4 +1,4 @@
-package org.comit.nrogowski.wows_whiteboard.model;
+package org.comit.nrogowski.wows_whiteboard.logical_model;
 
 /**
  * Existence of an object of this class is designed to guarantee validity and legitimacy for the ID in question.

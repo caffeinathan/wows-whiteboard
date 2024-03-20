@@ -1,4 +1,4 @@
-package org.comit.nrogowski.wows_whiteboard.model;
+package org.comit.nrogowski.wows_whiteboard.logical_model;
 
 import java.util.HashMap;
 import java.util.Map;
