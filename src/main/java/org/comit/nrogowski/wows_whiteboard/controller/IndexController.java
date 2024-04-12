@@ -2,6 +2,7 @@ package org.comit.nrogowski.wows_whiteboard.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class IndexController {
@@ -11,4 +12,16 @@ public class IndexController {
 		return "index";
 	}
 	
+	@GetMapping("/checklogin")
+	public String checkLogin(
+		@RequestParam String access_token,
+		@RequestParam String expires_at,
+		@RequestParam String account_id,
+		@RequestParam String nickname) {
+		
+		System.out.printf("%s (%s) is logged in with expiry %s, access token %n%s%n",
+				nickname, account_id, expires_at, access_token);
+		
+		return "checklogin";
+	}
 }
