@@ -18,4 +18,9 @@ public class DrawableText extends Drawable {
 	public int getStratDiagramId() {
 		return stratDiagramId;
 	}
+
+	@Override
+	int getId() {
+		return idDrawableText;
+	}
 }

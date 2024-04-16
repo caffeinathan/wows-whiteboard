@@ -20,5 +20,11 @@ public class DrawableIcon extends Drawable {
 	public int getStratDiagramId() {
 		return stratDiagramId;
 	}
+
+	@Override
+	int getId() {
+		return idDrawableIcon;
+	}
+	
 	
 }
