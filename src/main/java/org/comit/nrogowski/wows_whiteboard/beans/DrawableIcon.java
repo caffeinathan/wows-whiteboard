@@ -1,6 +1,7 @@
 package org.comit.nrogowski.wows_whiteboard.beans;
 
-public class DrawableIcon {
+
+public class DrawableIcon extends Drawable {
 	int idDrawableIcon;
 	int stratDiagramId;
 	int diagramLayer;
@@ -9,4 +10,10 @@ public class DrawableIcon {
 	int iconRotation;
 	int positionX;
 	int positionY;
+	
+	@Override
+	protected int getLayer() {
+		return diagramLayer;
+	}
+	
 }
