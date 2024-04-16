@@ -9,7 +9,12 @@ public class DrawablePath extends Drawable {
 	int diagramLayer;
 	
 	@Override
-	protected int getLayer() {
+	public int getLayer() {
 		return diagramLayer;
+	}
+
+	@Override
+	public int getStratDiagramId() {
+		return stratDiagramId;
 	}
 }

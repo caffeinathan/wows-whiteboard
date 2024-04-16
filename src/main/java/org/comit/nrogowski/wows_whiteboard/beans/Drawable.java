@@ -6,5 +6,11 @@ public abstract class Drawable implements Comparable<Drawable> {
 	public int compareTo(Drawable d) {
 		return Integer.compare(getLayer(), d.getLayer());
 	}
-	abstract protected int getLayer();
+	public abstract int getLayer();
+	public abstract int getStratDiagramId();
+	
+	public static boolean areSemanticallyEqual(Drawable d1, Drawable d2) {
+		// TODO: implement proper checks that won't silently fail when new drawable types are added
+		return true;
+	}
 }

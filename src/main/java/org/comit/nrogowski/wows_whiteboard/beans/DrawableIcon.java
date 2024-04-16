@@ -12,8 +12,13 @@ public class DrawableIcon extends Drawable {
 	int positionY;
 	
 	@Override
-	protected int getLayer() {
+	public int getLayer() {
 		return diagramLayer;
+	}
+
+	@Override
+	public int getStratDiagramId() {
+		return stratDiagramId;
 	}
 	
 }

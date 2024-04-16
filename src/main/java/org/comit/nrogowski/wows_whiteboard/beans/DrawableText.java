@@ -10,7 +10,12 @@ public class DrawableText extends Drawable {
 	int stratDiagramId;
 	
 	@Override
-	protected int getLayer() {
+	public int getLayer() {
 		return diagramLayer;
+	}
+
+	@Override
+	public int getStratDiagramId() {
+		return stratDiagramId;
 	}
 }
