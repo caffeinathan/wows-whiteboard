@@ -7,6 +7,9 @@ public class DrawablePath extends Drawable {
 	int pathTailY;
 	int stratDiagramId;
 	int diagramLayer;
+	int numPoints;
+	int[] x;
+	int[] y;
 	
 	@Override
 	public int getLayer() {

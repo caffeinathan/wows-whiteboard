@@ -23,4 +23,15 @@ public abstract class Drawable implements Comparable<Drawable> {
 		// TODO: implement proper checks that won't silently fail when new drawable types are added
 		return true;
 	}
+	
+	/**
+	 * If writing code that needs to be updated when new drawable types are added, you can check your logic against this
+	 * value to enact the principle of failing early.
+	 * <p>
+	 * Example:<br>
+	 * <code>if (drawable instanceof DrawableIcon) ...</code><br>
+	 * <code>else if (drawable instganceof DrawablePath) ...</code><br><br>
+	 * <code>if (Drawable.NUM_TYPES > 2) throw new OperationUnsupportedException("implement new drawable case!");</code>
+	 */
+	public static final int NUM_TYPES = 3;
 }

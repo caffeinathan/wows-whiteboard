@@ -1,10 +1,16 @@
 package org.comit.nrogowski.wows_whiteboard.dao;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.comit.nrogowski.wows_whiteboard.beans.Drawable;
-import org.comit.nrogowski.wows_whiteboard.exceptions.DrawableDaoException;
+import org.comit.nrogowski.wows_whiteboard.beans.DrawablePath;
+import org.comit.nrogowski.wows_whiteboard.beans.DrawablePathPoint;
+import org.comit.nrogowski.wows_whiteboard.dao.mapper.DrawableIconMapper;
+import org.comit.nrogowski.wows_whiteboard.dao.mapper.DrawablePathMapper;
+import org.comit.nrogowski.wows_whiteboard.dao.mapper.DrawablePathPointMapper;
+import org.comit.nrogowski.wows_whiteboard.dao.mapper.DrawableTextMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +63,7 @@ public class DrawableDao {
 	 * @param stratDiagramId the ID of the diagram these Drawables came from, for safety checking. 
 	 */
 	public void deleteDrawables(int[] drawableIds, int stratDiagramId) {
-		// TODO
+		
 	}
 	
 	
@@ -73,7 +79,27 @@ public class DrawableDao {
 //		List<Drawable> result = new ArrayList<>(selectAndMapDrawables(stratDiagramId).values());
 //		Collections.sort(result);
 //		return result;
-		return null; // TODO
+		List<Drawable> results = new ArrayList<Drawable>();
+		String statement;
+		
+		statement = "SELECT * FROM DRAWABLE_TEXT WHERE STRAT_DIAGRAM_ID = ?";
+		results.addAll(jdbcTemplate.query(statement, new DrawableTextMapper(), stratDiagramId));
+		
+		statement = "SELECT * FROM DRAWABLE_ICON WHERE STRAT_DIAGRAM_ID = ?";
+		results.addAll(jdbcTemplate.query(statement, new DrawableIconMapper(), stratDiagramId));
+		
+		statement = "SELECT * FROM DRAWABLE_PATH WHERE STRAT_DIAGRAM_ID = ?";
+		results.addAll(populatePathsWithPoints(
+				jdbcTemplate.query(statement, new DrawablePathMapper(), stratDiagramId)));
+	}
+
+	private Collection<Drawable> populatePathsWithPoints(List<DrawablePath> rawPathBeans) {
+		for (DrawablePath path: rawPathBeans) {
+			List<DrawablePathPoint> points = jdbcTemplate.query(
+					"SELECT * FROM DRAWABLE_PATH_POINT WHERE DRAWABLE_PATH_ID = ?",
+					new DrawablePathPointMapper(), path.getIdDrawablePath());
+			
+		}
 	}
 	
 }
