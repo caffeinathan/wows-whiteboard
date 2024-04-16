@@ -7,7 +7,12 @@ public abstract class Drawable implements Comparable<Drawable> {
 		return Integer.compare(getLayer(), d.getLayer());
 	}
 	
-	public abstract int getId();
+	abstract int getId();
+	/**
+	 * Retrieves the layer index for this Drawable. 0 represents the back-most layer,
+	 * and the maximum value is the front-most layer, to appear unobscured over every other Drawable.
+	 * @return the layer index for this Drawable
+	 */
 	public abstract int getLayer();
 	public abstract int getStratDiagramId();
 	
