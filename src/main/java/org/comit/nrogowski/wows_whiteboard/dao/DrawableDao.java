@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.comit.nrogowski.wows_whiteboard.WoWsWhiteboardApplication;
-import org.comit.nrogowski.wows_whiteboard.WowsWhiteboardException;
 import org.comit.nrogowski.wows_whiteboard.beans.Drawable;
+import org.comit.nrogowski.wows_whiteboard.exceptions.DrawableDaoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -32,12 +32,7 @@ public class DrawableDao {
 		// TODO: separate the three tasks and perform them
 		
 	}
-	@SuppressWarnings("serial")
-	public static class DrawableDaoException extends WowsWhiteboardException {
-		public DrawableDaoException(String message) {
-			super(message);
-		}
-	}
+	
 	/**
 	 * The validation can be hard on the database, so we may want to suppress the DB-heavy parts when not debugging
 	 * <ol><li>Ensure all stratBookIds are identical</li>

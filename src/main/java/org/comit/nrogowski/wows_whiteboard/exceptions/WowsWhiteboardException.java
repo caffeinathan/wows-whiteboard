@@ -1,4 +1,4 @@
-package org.comit.nrogowski.wows_whiteboard;
+package org.comit.nrogowski.wows_whiteboard.exceptions;
 
 public class WowsWhiteboardException extends RuntimeException {
 
