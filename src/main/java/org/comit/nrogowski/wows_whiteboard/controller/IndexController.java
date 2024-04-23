@@ -1,10 +1,8 @@
 package org.comit.nrogowski.wows_whiteboard.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import static org.comit.nrogowski.wows_whiteboard.Constants.*;
 
 @Controller
 public class IndexController {
@@ -16,9 +14,7 @@ public class IndexController {
 	}
 	
 	@GetMapping("/")
-	public String landingPage(Model model) {
-		model.addAttribute(APPLICATION_TITLE, strings.get(APPLICATION_TITLE));
-		
+	public String landingPage() {
 		return "landing";
 	}
 	

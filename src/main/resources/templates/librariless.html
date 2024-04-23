@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${appTitle + ': ' + ulTitle}">WoWS Whiteboard: User Library</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Title with help icon -->
+        <h1>User Library for &lt;username&gt;<span class="badge badge-info" data-toggle="collapse" data-target="#infoParagraph" aria-expanded="false" aria-controls="infoParagraph">&#9432;</span></h1>
+        <!-- Info paragraph (collapsed by default) -->
+        <div class="collapse" id="infoParagraph">
+            <p>Your library contains any strat books you own, or that you have been granted access to. You may delete any books which you control, removing them forever.</p>
+        </div>
+        
+        <!-- New strat book button -->
+        <button class="btn btn-primary mt-2">New strat book</button>
+        
+
+    <div th:replace="~{fragments :: legal-footer}"></div>
+    <div th:replace="~{fragments :: scripts}"></div>
+</body>
+</html>

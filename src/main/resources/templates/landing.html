@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:java="java">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${appTitle}">WoWS Whiteboard</title>
+    <title th:text="${APPLICATION_TITLE}">WoWS Whiteboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -28,14 +28,17 @@
         <p>Or, log in with your Wargaming.net account to access full site features:</p>
         
         <!-- Login Button -->
-        <a href="/login" class="btn btn-primary btn-lg">Login</a>
-        
+        <table align=center>
+            <tr>
+                <td><a th:href="${naGetLogin}" class="btn btn-primary btn-lg">NA Login</a></td>
+                <td><a th:href="${euGetLogin}" class="btn btn-primary btn-lg">EU Login</a></td>
+                <td><a th:href="${asGetLogin}" class="btn btn-primary btn-lg">ASIA Login</a></td>
+            </tr>
+        </table>
     </div>
     
     <div th:replace="~{fragments :: legal-footer}"></div>
-        <!-- Copyright -->
 
-    <!-- Bootstrap JS (optional if you need Bootstrap JavaScript components) -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <div th:replace="~{fragments :: scripts}"></div>
 </body>
 </html>
