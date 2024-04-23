@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${appTitle + ': ' + ulTitle}">WoWS Whiteboard: User Library</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Title with help icon -->
+        <h1 th:text="${'User Library for ' + user.username + '-' + user.region}">User Library for &lt;username&gt;<span class="badge badge-info" data-toggle="collapse" data-target="#infoParagraph" aria-expanded="false" aria-controls="infoParagraph">&#9432;</span></h1>
+        <!-- Info paragraph (collapsed by default) -->
+        <div class="collapse" id="infoParagraph">
+            <p>Your library contains any strat books you own, or that you have been granted access to. You may delete any books which you control, removing them forever.</p>
+        </div>
+        
+        <!-- New strat book button -->
+        <button class="btn btn-primary mt-2">New strat book</button>
+        
+        <!-- Scrollable list of books -->
+        <div class="mt-2">
+            <table th:each="book: ${userLibrary}">
+                <tr>
+                  <td rowspan=2>
+                    <img src="book_own.jpg" th:if="${book.owner.id == user.id && book.owner.region == user.region}"/>
+                    <img src="book_opted_in.jpg" th:if="${book.visibleWithUrl}"/>
+                    <img src="book_added_to.jpg" th:if="${(not book.visibleWithUrl) && #lists.contains(book.viewers, user)}"/>
+                    <!-- Show default book if none of the above were matched -->
+                    <img src="book_default.jpg" th:if="${
+                                not (book.owner.id == user.id && book.owner.region == user.region)
+                            and not (book.visibleWithUrl)
+                            and not ((not book.visibleWithUrl) && #lists.contains(book.viewers, user))}"/>
+                  </td>
+                  <th colspan=2>
+                    <div th:text="${book.name?: 'Strat book, name not found'}"></div>
+                  </th>
+                  <td colspan=2>
+                    <div th:text="${'Last changed ' + (book.lastChanged?: '&lt;datetime&gt;')}"></div> 
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button type="submit" class="btn btn-primary">Go</button>
+                  </td>
+                  <td>
+                    <button type="submit" class="btn btn-danger" th:if="${book.owner == user}">Delete</button>
+                    <button type="submit" class="btn btn-warning" th:if="${book.owner != user}">Hide</button>
+                  </td>
+                  <td colspan=2>
+                    <div th:text="${'Created on ' + (book.createdOn?: '&lt;date&gt;')}"></div> 
+                  </td>
+                </tr>
+            </table>
+        </div>
+    
+        <div class="mt-3">
+            <div class="row">
+                <div class="col">
+                    <div class="book-row d-flex align-items-center">
+                        <!-- Book icon -->
+                        <div class="mr-3">
+                            <img src="book_icon_url" alt="Book Icon" class="book-icon">
+                        </div>
+                        <!-- Book details -->
+                        <div class="flex-grow-1">
+                            <div>Book Name</div>
+                            <div>Last Changed: yyyy-mm-dd</div>
+                        </div>
+                        <!-- Book actions -->
+                        <div>
+                            <button class="btn btn-sm btn-primary">Open</button>
+                            <button class="btn btn-sm btn-danger">Delete</button>
+                            <!-- <button class="btn btn-sm btn-secondary">Hide</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat this row structure for each book -->
+            <!-- Example:
+            <div class="row">
+                <div class="col">
+                    <div class="book-row d-flex align-items-center">
+                        ...
+                    </div>
+                </div>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional if you need Bootstrap JavaScript components) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

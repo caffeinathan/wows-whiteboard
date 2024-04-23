@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${appTitle}">WoWS Whiteboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container landing-content">
+        <!-- Application Title and Logo -->
+        <h1 th:text="${appTitle}">WoWS Whiteboard</h1>
+        <img src="logo.png" class="logo">
+        
+        <!-- Welcome -->
+        <h3>Have a code? Enter it here!</h3>
+        <form th:action="@{/joincode}" method="GET">
+          <table class="table table-sm">
+            <tr>
+              <td class="col-11"><input type="text" class="form-control" name="code" placeholder="paste your code here"></td>
+              <td class="col-1"><button type="submit" class="btn btn-primary">Go</button></td>
+            </tr>
+          </table>
+        </form>
+        
+        <!-- Login Invitation -->
+        <p>Or, log in with your Wargaming.net account to access full site features:</p>
+        
+        <!-- Login Button -->
+        <a href="/login" class="btn btn-primary btn-lg">Login</a>
+        
+    </div>
+    
+    <div th:replace="~{fragments :: legal-footer}"></div>
+        <!-- Copyright -->
+
+    <!-- Bootstrap JS (optional if you need Bootstrap JavaScript components) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

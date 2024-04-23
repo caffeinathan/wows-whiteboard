@@ -91,15 +91,18 @@ public class DrawableDao {
 		statement = "SELECT * FROM DRAWABLE_PATH WHERE STRAT_DIAGRAM_ID = ?";
 		results.addAll(populatePathsWithPoints(
 				jdbcTemplate.query(statement, new DrawablePathMapper(), stratDiagramId)));
+		
+		return null; // TODO just doing this to compile app while doing other stuff
 	}
 
 	private Collection<Drawable> populatePathsWithPoints(List<DrawablePath> rawPathBeans) {
-		for (DrawablePath path: rawPathBeans) {
-			List<DrawablePathPoint> points = jdbcTemplate.query(
-					"SELECT * FROM DRAWABLE_PATH_POINT WHERE DRAWABLE_PATH_ID = ?",
-					new DrawablePathPointMapper(), path.getIdDrawablePath());
-			
-		}
+		return null; // TODO just doing this to compile app while doing other stuff, uncomment the loop below too
+//		for (DrawablePath path: rawPathBeans) {
+//			List<DrawablePathPoint> points = jdbcTemplate.query(
+//					"SELECT * FROM DRAWABLE_PATH_POINT WHERE DRAWABLE_PATH_ID = ?",
+//					new DrawablePathPointMapper(), path.getIdDrawablePath());
+//			
+//		}
 	}
 	
 }

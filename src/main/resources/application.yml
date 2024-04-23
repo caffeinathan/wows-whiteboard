@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: WoWS Whiteboard
+  datasource:
+    password: verifyfixes
+    url: jdbc:mysql://127.0.0.1:3306
+    username: wows_whiteboard
