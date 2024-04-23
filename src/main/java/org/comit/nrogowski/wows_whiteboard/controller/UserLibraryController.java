@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class UserLibraryController {
-	@GetMapping("/library_sample")
+	@GetMapping("/library")
 	public String userLibrary(Model model) {
 //		new {
 //
@@ -19,15 +19,8 @@ public class UserLibraryController {
 	
 	@GetMapping("/librariless")
 	public String librarilessTempPage( ) {
+		// if we forget to disable this binding in the future,
+		// we can still rig this to not allow privileged access on deployment
 		return (Constants.ENABLE_DEBUG) ? "librariless" : "userlibrary";
 	}
 }
-
-//class UlTestUser {
-//	public String username;
-//	public String region; 
-//}
-//
-//class UlTestBook {
-//	UlTestUser
-//}
