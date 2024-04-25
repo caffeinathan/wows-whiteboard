@@ -5,24 +5,6 @@ spring:
     password: verifyfixes
     url: jdbc:mysql://127.0.0.1:3306
     username: wows_whiteboard
-  security:
-    oauth2:
-      client:
-        provider:
-          wgeu:
-            issuer-uri: https://eu.wargaming.net/id/openid
-        registration:
-          wgeu:
-            client-id: c0df59e2cbe1ea0c3dd1347c742066be
-#        registration:
-#          wargaming-eu:
-#            provider: wargaming-eu
-#            client-id: c0df59e2cbe1ea0c3dd1347c742066be
-#            authorization-grant-type: authorization_code
-#            scope: openid,profile
-#        provider:
-#          wargaming-eu:
-#            issuer-uri: https://eu.wargaming.net/id/openid
 logging:
   level:
     org.comit.nrogowski: DEBUG

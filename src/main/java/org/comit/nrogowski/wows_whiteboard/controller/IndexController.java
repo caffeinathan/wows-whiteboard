@@ -1,6 +1,5 @@
 package org.comit.nrogowski.wows_whiteboard.controller;
 
-import org.comit.nrogowski.wows_whiteboard.Constants;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +16,9 @@ public class IndexController {
 	
 	@GetMapping("/")
 	public String landingPage(Model model) {
-//		model.addAttribute("naGetLogin", Constants.WG_NA_AUTH_URI_WITHOUT_BINDING + "/checklogin");
-//		model.addAttribute("euGetLogin", Constants.WG_EU_AUTH_URI_WITHOUT_BINDING + "/checklogin");
-//		model.addAttribute("asGetLogin", Constants.WG_AS_AUTH_URI_WITHOUT_BINDING + "/checklogin");
-		
-		model.addAttribute("redirectBinding", "/checklogin");
+//		model.addAttribute("naGetLogin", );
+//		model.addAttribute("euGetLogin", );
+//		model.addAttribute("asGetLogin", );
 		
 		return "landing";
 	}
