@@ -1,7 +1,6 @@
 package org.comit.nrogowski.wows_whiteboard.config;
 
 import org.comit.nrogowski.wows_whiteboard.Constants;
-import org.comit.nrogowski.wows_whiteboard.oauth2.CustomAuthorizationRequestResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
