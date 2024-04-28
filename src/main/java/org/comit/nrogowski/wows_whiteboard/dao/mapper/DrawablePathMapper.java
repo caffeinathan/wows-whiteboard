@@ -10,8 +10,14 @@ public class DrawablePathMapper implements RowMapper<DrawablePath> {
 
 	@Override
 	public DrawablePath mapRow(ResultSet rs, int rowNum) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return new DrawablePath(
+			rs.getInt("ID_DRAWABLE_PATH"),
+			rs.getInt("STYLE"),
+			rs.getInt("PATH_TAIL_X"),
+			rs.getInt("PATH_TAIL_Y"),
+			rs.getInt("STRAT_DIAGRAM_ID"),
+			rs.getInt("LAYER")
+		);
 	}
 
 

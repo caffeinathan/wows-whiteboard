@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.comit.nrogowski.wows_whiteboard.Constants;
 import org.comit.nrogowski.wows_whiteboard.beans.Drawable;
 import org.comit.nrogowski.wows_whiteboard.beans.DrawablePath;
 import org.comit.nrogowski.wows_whiteboard.beans.DrawablePathPoint;
@@ -11,6 +12,7 @@ import org.comit.nrogowski.wows_whiteboard.dao.mapper.DrawableIconMapper;
 import org.comit.nrogowski.wows_whiteboard.dao.mapper.DrawablePathMapper;
 import org.comit.nrogowski.wows_whiteboard.dao.mapper.DrawablePathPointMapper;
 import org.comit.nrogowski.wows_whiteboard.dao.mapper.DrawableTextMapper;
+import org.comit.nrogowski.wows_whiteboard.exceptions.DrawableDaoException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class DrawableDao {
+	@SuppressWarnings("unused")
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
@@ -63,7 +66,7 @@ public class DrawableDao {
 	 * @param stratDiagramId the ID of the diagram these Drawables came from, for safety checking. 
 	 */
 	public void deleteDrawables(int[] drawableIds, int stratDiagramId) {
-		
+		// TODO
 	}
 	
 	
@@ -92,17 +95,44 @@ public class DrawableDao {
 		results.addAll(populatePathsWithPoints(
 				jdbcTemplate.query(statement, new DrawablePathMapper(), stratDiagramId)));
 		
-		return null; // TODO just doing this to compile app while doing other stuff
+		return results;
 	}
 
-	private Collection<Drawable> populatePathsWithPoints(List<DrawablePath> rawPathBeans) {
-		return null; // TODO just doing this to compile app while doing other stuff, uncomment the loop below too
-//		for (DrawablePath path: rawPathBeans) {
-//			List<DrawablePathPoint> points = jdbcTemplate.query(
-//					"SELECT * FROM DRAWABLE_PATH_POINT WHERE DRAWABLE_PATH_ID = ?",
-//					new DrawablePathPointMapper(), path.getIdDrawablePath());
-//			
-//		}
+	private Collection<? extends Drawable> populatePathsWithPoints(List<DrawablePath> rawPathBeans) {
+		// update the paths in-place so we can return the original collection
+		for (DrawablePath path: rawPathBeans) {
+			// TODO: rewrite so we aren't querying database in a loop
+			List<DrawablePathPoint> points = jdbcTemplate.query(
+					"SELECT * FROM DRAWABLE_PATH_POINT WHERE DRAWABLE_PATH_ID = ?",
+					new DrawablePathPointMapper(), path.getId());
+
+			int[] x = new int[points.size()];
+			int[] y = new int[points.size()];
+			for (DrawablePathPoint point: points) {
+				final int i = point.getPointPathIndex(); 
+				if (Constants.ENABLE_DEBUG) {
+					// check we're not overwriting data
+					// may be performance-problematic so only check in debug build
+					if (x[i] != 0 || y[i] != 0) {
+						throw new DrawableDaoException(String.format(
+								"Path#%d has Point%d which duplicates POINT_PATH_INDEX %d",
+								point.getDrawablePathId(), point.getIdDrawablePathPoint(), i));
+					}
+				}
+				try {
+					x[i] = point.getTailRelativeX() + path.getPathTailX();
+					y[i] = point.getTailRelativeY() + path.getPathTailY();
+				} catch (IndexOutOfBoundsException e) {
+					throw new DrawableDaoException(String.format(
+							"Path#%d has Point%d with out-of-bounds POINT_PATH_INDEX %d",
+							point.getDrawablePathId(), point.getIdDrawablePathPoint(), i), e);
+				}
+			}
+				
+			path.setPoints(x, y);
+		}
+		
+		return rawPathBeans;
 	}
 	
 }

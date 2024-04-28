@@ -5,4 +5,8 @@ public class DrawableDaoException extends WowsWhiteboardException {
 	public DrawableDaoException(String message) {
 		super(message);
 	}
+
+	public DrawableDaoException(String message, Throwable cause) {
+		super(message, cause);
+	}
 }

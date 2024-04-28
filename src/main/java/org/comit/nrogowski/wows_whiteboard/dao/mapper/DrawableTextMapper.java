@@ -10,8 +10,15 @@ public class DrawableTextMapper implements RowMapper<DrawableText> {
 
 	@Override
 	public DrawableText mapRow(ResultSet rs, int rowNum) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return new DrawableText(
+			rs.getInt("ID_DRAWABLE_TEXT"),
+			rs.getInt("STYLE"),
+			rs.getInt("POSITION_X"),
+			rs.getInt("POSITION_Y"),
+			rs.getString("CONTENTS"),
+			rs.getInt("LAYER"),
+			rs.getInt("STRAT_DIAGRAM_ID")
+		);
 	}
 
 
