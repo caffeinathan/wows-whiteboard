@@ -1,5 +1,7 @@
 package org.comit.nrogowski.wows_whiteboard.beans;
 
+import org.comit.nrogowski.wows_whiteboard.exceptions.WowsWhiteboardException;
+
 public abstract class Drawable implements Comparable<Drawable> {
 
 	@Override
@@ -34,4 +36,11 @@ public abstract class Drawable implements Comparable<Drawable> {
 	 * <code>if (Drawable.NUM_TYPES > 2) throw new OperationUnsupportedException("implement new drawable case!");</code>
 	 */
 	public static final int NUM_TYPES = 3;
+
+	public static void assumingDrawableTypeCount(int n) {
+		if (n != NUM_TYPES) {
+			throw new WowsWhiteboardException(
+					String.format("Calling method requires update: expected %d types when %d exist", n, NUM_TYPES));
+		}
+	}
 }
